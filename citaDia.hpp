@@ -1,7 +1,7 @@
 #ifndef _citaDia_hpp_
 #define _citaDia_hpp_
 #include <iostream>
-#include "Paciente.cpp"
+#include "Paciente.hpp"
 using namespace std;
 
 class citaDia{

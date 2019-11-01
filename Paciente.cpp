@@ -2,9 +2,9 @@
 
 
        Paciente::Paciente(){
-            nombre = "";
+            nombre = " ";
             nivelUrgencia = 0;
-            descripcion = "";
+            descripcion = " ";
         }//constructor 
 
 
