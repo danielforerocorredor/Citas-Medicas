@@ -15,6 +15,7 @@ class Paciente{
         friend ostream& operator<<(ostream& os, Paciente& myPaciente);
         bool operator<(const Paciente B);
         bool operator>(const Paciente B);
+        void operator=(const Paciente P);
         string getEspecialidadPaciente();
 };
 
