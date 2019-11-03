@@ -93,4 +93,3 @@ int main(){
 
 //revisar porque solo recibe como cin una palabra
 //ordenar vector de pacientes por prioridad
-//cambiar valores booleanos por palabras y los numeros de los dias.

@@ -11,11 +11,16 @@ Doctores::Doctores(string newName, string newEspecialidad){
 }
 
 ostream& operator<<(ostream& os, Doctores& myDoc){
+            string Dias[] = {"lunes", "martes","miercoles","jueves","viernes","sabado","domingo"};
             os << "Nombre del doctor: " << myDoc.getName() << endl;
             os << "Especialidad del doctor: " << myDoc.getEspecialidad() << endl;
             for(int i = 0; i < 7; i++){
-                os << "\nEn el dia " << i << ":\n";
-                os << "\tLa disponibilidad es: " << myDoc.getDispDia(i) << endl;
+                os << "\nEn el dia " << Dias[i] << ":\n";
+                if(myDoc.getDispDia(i) == true){
+                    os << "\tEstá libre. " << endl;
+                }else{
+                    os << "\tNo está libre." << endl;
+                }
                 if(myDoc.getDispDia(i) == false){
                     os << "\t\tOcupado con el paciente: " << myDoc.disponibilidadSemanal[i].myPaciente.nombre;
                 }
