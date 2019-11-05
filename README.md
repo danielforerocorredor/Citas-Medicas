@@ -1,3 +1,3 @@
 # Citas-Medicas
 
-Execute "executable.cpp"
+Execute "eecutable.cpp"
