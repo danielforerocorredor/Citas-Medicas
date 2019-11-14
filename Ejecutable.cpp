@@ -32,14 +32,14 @@ void citasMedicas(){
         cin >> name;
         cout << "Ingrese el nivel de urgencia.\n";
         cin >> urg;
+        cin.ignore();
         cout << "Ingrese la descripcion de los sintomas. \n";
-        cin >> desc;
+        getline(cin, desc);
         Paciente P(name, urg, desc);
         P.descripcion += " .";
-        //misPacientesVec.push_back(P);
         misPacientesQueue.push(P);
         string resp;
-        cout << "desea agregar mas pacientes?" << endl;
+        cout << "\ndesea agregar mas pacientes?" << endl;
         cin >> resp;
         if(resp == "si"){
             more = true;
@@ -53,11 +53,6 @@ void citasMedicas(){
         misPacientesQueue.pop();
     }
 
-    /* cout << "\n\nLos pacientes registrados son: \n\n\n";
-    for(int i = 0; i < misPacientesVec.size(); i++){
-        cout << misPacientesVec[i];
-        cout << "La especialidad necesaria es: "<< misPacientesVec[i].getEspecialidadPaciente()<< endl << endl;
-    } */
     // CREACION DOCTORES
     vector<Doctores> misDoctores;
     for(int i = 0; i < misPacientesVec.size(); i++){
