@@ -13,10 +13,12 @@ class Paciente{
         Paciente();
         Paciente(string Name, int Level, string Description);
         friend ostream& operator<<(ostream& os, Paciente& myPaciente);
-        bool operator<(const Paciente B);
+        bool operator<(const Paciente B)const;
         bool operator>(const Paciente B);
         void operator=(const Paciente P);
-        string getEspecialidadPaciente();
+        string getEspecialidadPaciente()const;
+
+        
 };
 
 #endif

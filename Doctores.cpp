@@ -22,7 +22,7 @@ ostream& operator<<(ostream& os, Doctores& myDoc){
                     os << "\tNo está libre." << endl;
                 }
                 if(myDoc.getDispDia(i) == false){
-                    os << "\t\tOcupado con el paciente: " << myDoc.disponibilidadSemanal[i].myPaciente.nombre;
+                    os << "\t\tOcupado con el paciente: \n" << myDoc.disponibilidadSemanal[i].myPaciente;
                 }
             }
     return os;

@@ -1,5 +1,5 @@
 #include "Paciente.hpp"
-
+#include <vector>
 
 Paciente::Paciente(){
     nombre = " ";
@@ -20,7 +20,7 @@ Paciente::Paciente(string Name, int Level, string Description){
     descripcion = Description;
 }//constructor parametrizado
 
-bool Paciente::operator<(const Paciente B){
+bool Paciente::operator<(const Paciente B)const{
     if(nivelUrgencia < B.nivelUrgencia){
         return true;
     }else{
@@ -42,7 +42,7 @@ void Paciente::operator=(const Paciente P){
     descripcion = P.descripcion;
 }
 
-string Paciente::getEspecialidadPaciente(){
+string Paciente::getEspecialidadPaciente()const{
     string especialidades[7] = {"Oftalmologia", "Cardiologia", "Neurologia", "Gastroenterologia", "Traumatologia","Neumologia", "General"};
     int numDePalabras = 0;
     string Palabras[numDePalabras];

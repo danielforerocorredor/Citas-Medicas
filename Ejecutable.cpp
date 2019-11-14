@@ -2,6 +2,7 @@
 #include "Doctores.hpp"
 #include <stdlib.h>
 #include <iostream> 
+#include <queue> 
 using namespace std;
 
 bool checkEspecialidadesRepetidas(string esp, vector<Doctores> vec){
@@ -13,14 +14,15 @@ bool checkEspecialidadesRepetidas(string esp, vector<Doctores> vec){
     return true;
 }
 
+
 void citasMedicas(){
     string nombres[] = {"Dr. Carlos", "Dr. Juan", "Dr. Pablo", "Dr. Santiago", "Dra. Laura", "Dra. Daniela", "Dra. Sandra", "Dra. Paola"};
     int myRand = 0;
     //CREACION PACIENTES
     cout << "\n\n\n\n\n";
-    bool working = true;
     cout << "ingrese datos de pacientes a los cuales se les agendara cita." << endl;
-    vector<Paciente> misPacientes;
+    vector<Paciente> misPacientesVec;
+    priority_queue<Paciente> misPacientesQueue;
     string name;
     int urg;
     string desc;
@@ -34,7 +36,8 @@ void citasMedicas(){
         cin >> desc;
         Paciente P(name, urg, desc);
         P.descripcion += " .";
-        misPacientes.push_back(P);
+        //misPacientesVec.push_back(P);
+        misPacientesQueue.push(P);
         string resp;
         cout << "desea agregar mas pacientes?" << endl;
         cin >> resp;
@@ -44,33 +47,39 @@ void citasMedicas(){
             more = false;
         }
     }
-    cout << "\n\nLos pacientes registrados son: \n\n\n";
-    for(int i = 0; i < misPacientes.size(); i++){
-        cout << misPacientes[i];
-        cout << "La especialidad necesaria es: "<< misPacientes[i].getEspecialidadPaciente()<< endl << endl;
+    int pqSize = misPacientesQueue.size();
+    for(int i = 0; i < pqSize; i++){
+        misPacientesVec.push_back(misPacientesQueue.top());
+        misPacientesQueue.pop();
     }
+
+    /* cout << "\n\nLos pacientes registrados son: \n\n\n";
+    for(int i = 0; i < misPacientesVec.size(); i++){
+        cout << misPacientesVec[i];
+        cout << "La especialidad necesaria es: "<< misPacientesVec[i].getEspecialidadPaciente()<< endl << endl;
+    } */
     // CREACION DOCTORES
     vector<Doctores> misDoctores;
-    for(int i = 0; i < misPacientes.size(); i++){
-        if(checkEspecialidadesRepetidas(misPacientes[i].getEspecialidadPaciente(), misDoctores)){
+    for(int i = 0; i < misPacientesVec.size(); i++){
+        if(checkEspecialidadesRepetidas(misPacientesVec[i].getEspecialidadPaciente(), misDoctores)){
             myRand = rand() % 9;
-            Doctores D(nombres[myRand],misPacientes[i].getEspecialidadPaciente());
+            Doctores D(nombres[myRand],misPacientesVec[i].getEspecialidadPaciente());
             misDoctores.push_back(D);
         }
     }
-    cout << "\n\nLos Doctores registrados son: \n\n\n";
+    cout << "\n\nLos Doctores solicitados son: \n\n\n";
     for(int i = 0; i < misDoctores.size(); i++){
-        cout << misDoctores[i] << endl << endl;
+        cout << misDoctores[i].getName() << " y su especialidad es: "<< misDoctores[i].getEspecialidad() <<endl << endl;
 
     }
     
 
     //ASIGNACION CITAS POR ORDEN DE LLEGADA
-    for(int i = 0; i < misPacientes.size(); i ++){
-        string esp = misPacientes[i].getEspecialidadPaciente();
+    for(int i = 0; i < misPacientesVec.size(); i ++){
+        string esp = misPacientesVec[i].getEspecialidadPaciente();
         for(int o = 0; o < misDoctores.size(); o++){
             if(esp == misDoctores[o].getEspecialidad()){
-                misDoctores[o].asignarCita(misDoctores[o].proximaCitaDisp(), misPacientes[i]);
+                misDoctores[o].asignarCita(misDoctores[o].proximaCitaDisp(), misPacientesVec[i]);
             }
         }
     }
