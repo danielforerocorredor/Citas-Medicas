@@ -45,42 +45,66 @@ void Paciente::operator=(const Paciente P){
 string Paciente::getEspecialidadPaciente()const{
     string especialidades[7] = {"Oftalmologia", "Cardiologia", "Neurologia", "Gastroenterologia", "Traumatologia","Neumologia", "General"};
     int numDePalabras = 0;
-    string Palabras[numDePalabras];
+    vector<string> Palabras;
     string word = "";
-    int index=0;
-    for(int i = 0; i < descripcion.size()-1 ; i++){
-        char x = descripcion.at(i);
+    int index = 0;
+    string des = descripcion;
+    if(des.at(des.size()-1) != ' '){
+        des += " ";
+    }
+    for(int i = 0; i < des.size(); i++){
+        char x = des.at(i);
         if(x == ' '){
+            //cout << "\npalabra: "<<word;
             numDePalabras++;
-            Palabras[index]=word;
+            Palabras.push_back(word);
             word = "";
+        }else if(x == ','){
+            continue;
         }else{
             word = word + x;
         }
      }
-    for(int i = 0; i < numDePalabras; ++i){
-        if(Palabras[i] == "ojos" || Palabras[i]=="parpado" || Palabras[i]=="pupilas" || Palabras[i] == "iris" || Palabras[i]=="ceguera"){
-            return especialidades[0];
-        }//Oftalmologia
-        else if(Palabras[i] == "corazon" || Palabras[i]=="desmayo" || Palabras[i]=="presion" || Palabras[i] == "taquicardia" || Palabras[i]=="pecho"){
-            return especialidades[1];
-        }//cardiologia
-        else if(Palabras[i] == "cabeza" || Palabras[i]=="cerebro" || Palabras[i]=="tics" || Palabras[i] == "mareo" || Palabras[i]=="temblor"){
-            return especialidades[2];
-        }//Neurologia
-        else if(Palabras[i] == "estomago" || Palabras[i]=="diarrea" || Palabras[i]=="vomito" || Palabras[i] == "gastritis" || Palabras[i]=="apetito"){
-            return especialidades[3];
+     int vals[7] = {0,0,0,0,0,0,0};
+     for(int i = 0; i < numDePalabras; i++){
+         if(Palabras[i] == "ojos" || Palabras[i]=="parpado" || Palabras[i]=="pupilas" || Palabras[i] == "iris" || Palabras[i]=="ceguera"){
+             vals[0]++;
+         }//oftalmologia
+         else if(Palabras[i] == "corazon" || Palabras[i]=="desmayo" || Palabras[i]=="presion" || Palabras[i] == "taquicardia" || Palabras[i]=="pecho"){
+             vals[1]++;
+         }//cardiologia
+         else if(Palabras[i] == "cabeza" || Palabras[i]=="cerebro" || Palabras[i]=="tics" || Palabras[i] == "mareo" || Palabras[i]=="temblor"){
+             vals[2]++;
+         }//neurologia
+         else if(Palabras[i] == "estomago" || Palabras[i]=="diarrea" || Palabras[i]=="vomito" || Palabras[i] == "gastritis" || Palabras[i]=="apetito"){
+            vals[3]++;
         }//gastroenterologia
         else if(Palabras[i] == "huesos" ||Palabras[i] == "hueso" || Palabras[i]=="musculo" || Palabras[i]=="golpe" || Palabras[i] == "fractura" || Palabras[i]=="lesion"){
-            return especialidades[4];
+            vals[4]++;
         }//traumatologoa
         else if(Palabras[i] == "pulmones" || Palabras[i]=="nariz" || Palabras[i]=="respirar" || Palabras[i] == "congestion" || Palabras[i]=="flema" || Palabras[i]=="tos"){
-            return especialidades[5];
+            vals[5]++;
         }//neumologia
         else if (Palabras[i]=="general"){
-            return especialidades[6];
+            vals[6]++;
         }//general
-        else{ return especialidades[6]; }
-    }
-    return especialidades[6];
+     }
+     if(vals[0]>=vals[1] && vals[0]>=vals[2] && vals[0]>=vals[3] && vals[0]>=vals[4] && vals[0]>=vals[5] && vals[0]>=vals[6]){
+         return especialidades[0];
+     }else if(vals[1]>=vals[0] && vals[1]>=vals[2] && vals[1]>=vals[3] && vals[1]>=vals[4] && vals[1]>=vals[5] && vals[1]>=vals[6]){
+         return especialidades[1];
+     }else if(vals[2]>=vals[0] && vals[2]>=vals[1] && vals[2]>=vals[3] && vals[2]>=vals[4] && vals[2]>=vals[5] && vals[2]>=vals[6]){
+         return especialidades[2];
+     }else if(vals[3]>=vals[0] && vals[3]>=vals[1] && vals[3]>=vals[2] && vals[3]>=vals[4] && vals[3]>=vals[5] && vals[3]>=vals[6]){
+         return especialidades[3];
+     }else if(vals[4]>=vals[0] && vals[4]>=vals[1] && vals[4]>=vals[2] && vals[4]>=vals[3] && vals[4]>=vals[5] && vals[4]>=vals[6]){
+         return especialidades[4];
+     }else if(vals[5]>=vals[0] && vals[5]>=vals[1] && vals[5]>=vals[2] && vals[5]>=vals[3] && vals[5]>=vals[4] && vals[5]>=vals[6]){
+         return especialidades[5];
+     }else if(vals[6]>=vals[0] && vals[6]>=vals[1] && vals[6]>=vals[2] && vals[6]>=vals[3] && vals[6]>=vals[4] && vals[6]>=vals[5]){
+         return especialidades[6];
+     }
+
+
+     return especialidades[6];
 }

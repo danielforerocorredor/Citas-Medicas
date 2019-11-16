@@ -92,8 +92,3 @@ int main(){
 
     return 0;
 }
-
-
-
-//revisar porque solo recibe como cin una palabra
-//ordenar vector de pacientes por prioridad

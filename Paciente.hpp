@@ -10,13 +10,13 @@ class Paciente{
         string descripcion; 
 
 
-        Paciente();
-        Paciente(string Name, int Level, string Description);
-        friend ostream& operator<<(ostream& os, Paciente& myPaciente);
-        bool operator<(const Paciente B)const;
-        bool operator>(const Paciente B);
-        void operator=(const Paciente P);
-        string getEspecialidadPaciente()const;
+        Paciente();//CONSTRUCTOR (genera un paciente "vacio").
+        Paciente(string Name, int Level, string Description);//CONSTRUCTOR PARAMETRIZADO
+        friend ostream& operator<<(ostream& os, Paciente& myPaciente);//SOBRECARGA OPERADOR INSERCION
+        bool operator<(const Paciente B)const;//SOBRECARGA OPERADOR <
+        bool operator>(const Paciente B);//SOBRECARGA OPERADOR >
+        void operator=(const Paciente P);//SOBRECARGA OPERADOR =
+        string getEspecialidadPaciente()const;//OUTPUT: string con la especialidad que necesita el paciente 
 
         
 };

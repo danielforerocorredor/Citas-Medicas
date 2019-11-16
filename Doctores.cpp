@@ -22,7 +22,7 @@ ostream& operator<<(ostream& os, Doctores& myDoc){
                     os << "\tNo está libre." << endl;
                 }
                 if(myDoc.getDispDia(i) == false){
-                    os << "\t\tOcupado con el paciente: \n" << myDoc.disponibilidadSemanal[i].myPaciente;
+                    os << "\t\tOcupado con el paciente: \n\t\t\t" << myDoc.disponibilidadSemanal[i].myPaciente.nombre << "\n\t\tcon nivel de urgencia: " << myDoc.disponibilidadSemanal[i].myPaciente.nivelUrgencia;
                 }
             }
     return os;
@@ -38,13 +38,6 @@ string Doctores::getEspecialidad(){
 
 bool Doctores::getDispDia(int dia){
     return disponibilidadSemanal[dia].disponibilidad;
-}
-
-void Doctores::getPacienteDia(int dia){
-    Paciente x("no", 0, "nop .");
-    if(disponibilidadSemanal[dia].disponibilidad == false){
-        cout << disponibilidadSemanal[dia].myPaciente.nombre;
-    }
 }
 
 void Doctores::asignarCita(int dia, Paciente Pacientico){
