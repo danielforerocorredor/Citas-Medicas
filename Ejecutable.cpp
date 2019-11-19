@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <iostream> 
 #include <queue> 
+#include <fstream>
+#include <stdlib.h>
 using namespace std;
 
 bool checkEspecialidadesRepetidas(string esp, vector<Doctores> vec){
@@ -16,7 +18,18 @@ bool checkEspecialidadesRepetidas(string esp, vector<Doctores> vec){
 
 
 void citasMedicas(){
-    string nombres[] = {"Dr. Carlos", "Dr. Juan", "Dr. Pablo", "Dr. Santiago", "Dra. Laura", "Dra. Daniela", "Dra. Sandra", "Dra. Paola"};
+    vector<string> nombres;
+    nombres.push_back("Dr. Carlos");
+    nombres.push_back("Dr. Juan");
+    nombres.push_back("Dr. Pablo");
+    nombres.push_back("Dr. Santiago");
+    nombres.push_back("Dra. Laura");
+    nombres.push_back("Dra. Daniela");
+    nombres.push_back("Dra. Sandra");
+    nombres.push_back("Dra. Paola");
+    nombres.push_back("Dr. Manuel");
+    nombres.push_back("Dr. Julian");
+
     int myRand = 0;
     //CREACION PACIENTES
     cout << "\n\n\n\n\n";
@@ -57,15 +70,14 @@ void citasMedicas(){
     vector<Doctores> misDoctores;
     for(int i = 0; i < misPacientesVec.size(); i++){
         if(checkEspecialidadesRepetidas(misPacientesVec[i].getEspecialidadPaciente(), misDoctores)){
-            myRand = rand() % 9;
-            Doctores D(nombres[myRand],misPacientesVec[i].getEspecialidadPaciente());
+            Doctores D(nombres[nombres.size()-1],misPacientesVec[i].getEspecialidadPaciente());
             misDoctores.push_back(D);
+            nombres.pop_back();
         }
     }
     cout << "\n\nLos Doctores solicitados son: \n\n\n";
     for(int i = 0; i < misDoctores.size(); i++){
         cout << misDoctores[i].getName() << " y su especialidad es: "<< misDoctores[i].getEspecialidad() <<endl << endl;
-
     }
     
 
@@ -78,11 +90,23 @@ void citasMedicas(){
             }
         }
     }
+    for(int i = 0; i < misDoctores.size(); i++){
+        string nombreArchivo = misDoctores[i].getName();
+        nombreArchivo+=".txt";
+        ofstream file;
+        file.open(nombreArchivo);
+        file << misDoctores[i];
+        file.close();
+    }
+
+    
     cout << "\n\nLos horarios de los doctores ahora son: \n\n\n";
     for(int i = 0; i < misDoctores.size(); i++){
         cout << misDoctores[i] << endl << endl;
-
     }
+    
+    cout << "\nSe crearon correctamente los archivos con los horarios de los doctores.\n\n\n"; 
+
 }
 
 int main(){
