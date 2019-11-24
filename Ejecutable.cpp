@@ -42,7 +42,7 @@ void citasMedicas(){
     bool more = true;
     while(more){
         cout << "\nIngrese el nombre del paciente\n";
-        cin >> name;
+        getline(cin, name);
         cout << "Ingrese el nivel de urgencia.\n";
         cin >> urg;
         cin.ignore();

@@ -8,7 +8,7 @@ Doctores::Doctores(string newName, string newEspecialidad){
     for(int i = 0; i <7; i++){
         disponibilidadSemanal.push_back(libre);
     }
-}
+}//constructor parametrizado
 
 ostream& operator<<(ostream& os, Doctores& myDoc){
             string Dias[] = {"lunes", "martes","miercoles","jueves","viernes","sabado","domingo"};
@@ -26,24 +26,24 @@ ostream& operator<<(ostream& os, Doctores& myDoc){
                 }
             }
     return os;
-}
+}//el operador '<<' sirve para la insercion de objetos tipo Doctores
 
 string Doctores::getName(){
     return nombre;
-}
+}//retorna el nombre del doctor 
 
 string Doctores::getEspecialidad(){
     return especialidad;
-}
+}//retorna la especialidad del doctor 
 
 bool Doctores::getDispDia(int dia){
     return disponibilidadSemanal[dia].disponibilidad;
-}
+}//retorna si el doctor esta libre o no ese dia
 
 void Doctores::asignarCita(int dia, Paciente Pacientico){
     disponibilidadSemanal[dia].disponibilidad = false;
     disponibilidadSemanal[dia].myPaciente = Pacientico;
-}
+}//asigna un paciente a el dia dado dentro del horario del doctor y cambia la disponibilidad del dia 
 
 int Doctores::proximaCitaDisp(){
     for(int i = 0; i < 7; i++){
@@ -52,4 +52,4 @@ int Doctores::proximaCitaDisp(){
         }
     }
     return -1;
-}
+}//metodo que retorna entero que representa dia mas proximo de la semana en el cual el doctor tiene disponibilidad 

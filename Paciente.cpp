@@ -12,7 +12,7 @@ ostream& operator<<(ostream& os, Paciente& myPaciente){
     os << "nivel de urgencia: "<<myPaciente.nivelUrgencia << endl;
     os << "descripcion: "<<myPaciente.descripcion << endl;
     return os;
-}
+}//el operador '<<' sirve para la insercion de un objeto de este tipo 
 
 Paciente::Paciente(string Name, int Level, string Description){
     nombre = Name;
@@ -40,7 +40,7 @@ void Paciente::operator=(const Paciente P){
     nombre = P.nombre;
     nivelUrgencia = P.nivelUrgencia;
     descripcion = P.descripcion;
-}
+}//el operadpr '=', sirve como operador de asignacion 
 
 string Paciente::getEspecialidadPaciente()const{
     string especialidades[7] = {"Oftalmologia", "Cardiologia", "Neurologia", "Gastroenterologia", "Traumatologia","Neumologia", "General"};
@@ -107,4 +107,4 @@ string Paciente::getEspecialidadPaciente()const{
 
 
      return especialidades[6];
-}
+}//retorna la especialidad que necesita el paciente, dada su descripcion. 

@@ -8,9 +8,9 @@ using namespace std;
 /*
 
     CLASE QUE REPRESENTA A UN DOCTOR, SUS DATOS Y SU DISPONIBILIDAD SEMANAL 
-        - Posee el nombre del doctor
-        - Su especialidad
-        - Un vector de tipo "citaDia" que representa la disponibilidad de una semana 
+        - Posee el nombre del doctor (STRING).
+        - Su especialidad (STRING)
+        - Un vector de tipo "citaDia" que representa la disponibilidad de una semana (vector<citaDia>)
 */
 class Doctores{
     private:
